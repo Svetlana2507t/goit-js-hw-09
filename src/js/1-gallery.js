@@ -66,7 +66,7 @@ const images = [
 
 ulGallery = document.querySelector('.gallery');
 
-function createMarkup(images) {
+export function createMarkup(images) {
   for (image of images) {
     const li = document.createElement('li');
     li.classList.add('gallery-item');
@@ -112,5 +112,3 @@ function clickHandler(event) {
 
   //   instance.show();
 }
-
-export createMarkup;
