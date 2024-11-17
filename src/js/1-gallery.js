@@ -84,14 +84,6 @@ export const markup = images
 gallery.innerHTML = markup;
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt', // Use the alt attribute for captions
-  captionDelay: 250, // Add a delay before showing captions
+  captionsData: 'alt',
+  captionDelay: 250,
 });
-
-//   const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <img src="${event.target.dataset.source}"
-//     </div>`);
-
-//     instance.show();
-// }
