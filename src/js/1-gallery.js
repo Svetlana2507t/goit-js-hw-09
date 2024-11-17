@@ -105,10 +105,14 @@ function clickHandler(event) {
   // }
   console.log(event.target.dataset.source);
 
-  const instance = basicLightbox.create(`
-    <div class="modal">
-        <img src="${event.target.dataset.source}"
-    </div>`);
+  //   const instance = basicLightbox.create(`
+  //     <div class="modal">
+  //         <img src="${event.target.dataset.source}"
+  //     </div>`);
 
-  instance.show();
+  //   instance.show();
+}
+
+export function createMarkup() {
+  console.log('Function from Module 1');
 }
