@@ -113,6 +113,4 @@ function clickHandler(event) {
   //   instance.show();
 }
 
-export function createMarkup() {
-  console.log('Function from Module 1');
-}
+export createMarkup;
