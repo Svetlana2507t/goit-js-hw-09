@@ -64,51 +64,34 @@ const images = [
   },
 ];
 
-ulGallery = document.querySelector('.gallery');
-
-export function createMarkup(images) {
-  for (image of images) {
-    const li = document.createElement('li');
-    li.classList.add('gallery-item');
-
-    const link = document.createElement('a');
-    link.classList.add('gallery-link');
-    link.href = image.original;
-
-    const img = document.createElement('img');
-    img.classList.add('gallery-image');
-    img.src = image.preview;
-    img.alt = image.description;
-    //img.dataset.source = image.original;
-
-    link.append(img);
-    li.append(link);
-    ulGallery.append(li);
-  }
-}
 import SimpleLightbox from 'simplelightbox';
-//import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 //import SimpleLightbox from 'simplelightbox/dist/simple-lightbox.esm';
 
-createMarkup(images);
+const gallery = document.querySelector('.gallery');
 
-ulGallery.addEventListener('click', clickHandler);
+export const markup = images
+  .map(
+    img => `
+    <li class="gallery-item">  
+      <a class="gallery-link" href="${img.original}">
+          <img class="gallery-image" src="${img.preview}" alt="${img.description}" />
+      </a>
+    </li>`
+  )
+  .join(' ');
 
-function clickHandler(event) {
-  event.preventDefault();
+gallery.innerHTML = markup;
 
-  if (!event.target.classList.contains('gallery-image')) {
-    return;
-  }
-  // if (event.target === event.currentTarget) {
-  //   return;
-  // }
-  console.log(event.target.dataset.source);
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt', // Use the alt attribute for captions
+  captionDelay: 250, // Add a delay before showing captions
+});
 
-  //   const instance = basicLightbox.create(`
-  //     <div class="modal">
-  //         <img src="${event.target.dataset.source}"
-  //     </div>`);
+//   const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <img src="${event.target.dataset.source}"
+//     </div>`);
 
-  //   instance.show();
-}
+//     instance.show();
+// }
