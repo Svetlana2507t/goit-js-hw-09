@@ -1,10 +1,10 @@
 .form-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+  align-items: center;
+  /* justify-content: flex-start; */
+  flex-direction: row;
+  align-content: center;
   gap: 8px;
-  max-width: 360px;
   padding: 24px;
 }
 .feedback-form {
@@ -12,7 +12,10 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+  margin: 0 auto;
   gap: 8px;
+
+  max-width: 360px;
 }
 label {
   font-weight: 400;
@@ -47,6 +50,10 @@ button {
   gap: 10px;
 }
 input[name="email"] {
+  border-radius: 4px;
+  border: 1px solid #2e2f42;
+}
+textarea {
   border-radius: 4px;
   border: 1px solid #2e2f42;
 }
