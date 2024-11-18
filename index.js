@@ -1,2 +1,2 @@
-import"./assets/1-gallery-Cxuoo0g5.js";/* empty css                      */import"./assets/vendor-CgTBfC_f.js";const e={email:" ",message:" "},o=document.querySelector("feedback-form"),l=o.elements.email;console.log(`emailInput: ${l}`);console.log(`emailInput.value: ${l.value}`);const t=o.elements.message;console.log(`textInput.value: ${t.value}`);o.addEventListener("input",n);function n(a){return e.email=l.value,e.message=t.value,localStorage.add(e),console.log(`formData: ${e}`),e}console.log("hello world");
+import"./assets/styles-UvXNCwUC.js";import"./assets/vendor-CgTBfC_f.js";import"./assets/1-gallery-BSIhSqSc.js";import"./assets/2-form-BOfzjcww.js";console.log("hello world");
 //# sourceMappingURL=index.js.map
