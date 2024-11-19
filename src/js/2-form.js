@@ -3,58 +3,55 @@ let formData = {
   message: "",
 };
 
-localStorage.setItem("formData", JSON.stringify(formData));
+const localStorageKey = "feedback-form-state";
 const form = document.querySelector(".feedback-form");
 
-const savedData = localStorage.getItem("feedback-form-state");
-if (savedData) {
-  const parsedData = JSON.parse(savedData);
-  //console.log("Data exists:", parsedData);
+if (!form) {
+  console.error("Form not found!");
+} else {
+  const savedData = localStorage.getItem(localStorageKey);
 
-  formData = parsedData;
-  // if (localStorage.getItem("formData")) {
-  //   const savedData = JSON.parse(localStorage.getItem("formData"));
-  //   console.log("Data exists:", savedData);
-  //   formData = savedData;
+  if (savedData) {
+    //let parsedData = JSON.parse(savedData);
+    //console.log("parsed savedData", parsedData);
+    formData = JSON.parse(savedData);
+    //console.log("formData get from parsed", formData);
 
-  const form = document.querySelector(".feedback-form");
-
-  if (form) {
     form.elements.email.value = formData.email || "";
     form.elements.message.value = formData.message || "";
   }
-} else {
-  console.log("No data found in Local Storage.");
-}
-
-if (!form) {
-  console.log("Form not found!");
-} else {
-  const emailInput = form.elements.email;
-  const textInput = form.elements.message;
 
   form.addEventListener("input", event => {
     const { name, value } = event.target;
-    if (name) {
-      formData[name] = value.trim();
+    if (name && value.trim() !== "") {
+      // console.log("Event target name:", event.target.name);
+      // console.log("Event target value:", event.target.value);
+      formData[name] = value.trim(); // update formData
+      //console.log("Updated formData:", JSON.stringify(formData, null, 2));
+
+      //console.log("formData Updated:", formData);
+
+      localStorage.setItem(localStorageKey, JSON.stringify(formData)); // save to localStorage
     }
-    localStorage.setItem("formData", JSON.stringify(formData));
-    //console.log("Updated formData:", formData);
   });
 
   form.addEventListener("submit", event => {
     event.preventDefault();
 
     if (!formData.email || !formData.message) {
-      alert("Please fill in all fields");
+      alert("Please fill all fields");
       return;
     }
 
-    console.log("Form data:", formData);
+    console.log("formData:", formData);
 
+    formData = {
+      email: "",
+      message: "",
+    };
     form.reset();
-    localStorage.removeItem("formData");
+    localStorage.removeItem(localStorageKey);
+
+    console.log("FormData cleared:", formData);
   });
 }
-
-export { formData };
